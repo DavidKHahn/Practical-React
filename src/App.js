@@ -4,6 +4,7 @@ import "./App.css";
 // import Header from './components/Header';
 // import Counter from './components/Counter';
 import ImageSlider from "./components/ImageSlider";
+import Counter from "./components/Counter";
 
 class App extends Component {
   state = {
@@ -15,16 +16,20 @@ class App extends Component {
 
   render() {
     // const add = (a, b) => a + b;
+    if (!this.state.visible) {
+      return <div>display nothing</div>;
+    }
 
     const buttonText = this.state.visible ? 'hide' : 'show';
+    const slider = this.state.visible ? <ImageSlider /> : <div><Counter /></div>;
 
     return (
       <div className="App">
-        {this.state.visible ? <ImageSlider /> : <div>I am hidden</div>}
+        {slider}
         <button
           onClick={() => {
             this.setState({
-              visible: false
+              visible: !this.state.visible
             });
           }}
         >
