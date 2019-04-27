@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Body, Body2 } from './components/Body';
 import Header from './components/Header';
+import Counter from './components/Counter';
 
 class App extends Component {
   add(a, b) {
@@ -24,6 +25,8 @@ class App extends Component {
         />
         <Body2 />
         <Body myFunc={this.add} text="i am cool" text2="i am cool2" />
+        <Counter initialCount={0} />
+        <Counter initialCount={100} />
       </div>
     );
   }
