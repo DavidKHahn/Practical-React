@@ -15,13 +15,20 @@ class App extends Component {
   // }
 
   render() {
+    let slider = this.state.visible ? (
+    <ImageSlider /> 
+    ) : (
+      <div>
+        <Counter />
+      </div>
+    );
+
     // const add = (a, b) => a + b;
     if (!this.state.visible) {
-      return <div>display nothing</div>;
+      slider = <div>display nothing</div>;
     }
 
     const buttonText = this.state.visible ? 'hide' : 'show';
-    const slider = this.state.visible ? <ImageSlider /> : <div><Counter /></div>;
 
     return (
       <div className="App">
