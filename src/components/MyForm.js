@@ -9,56 +9,52 @@ export default class MyForm extends Component {
   };
 
   handleChange = event => {
+    const isCheckbox = event.target.type === "checkbox";
     this.setState({
-      name: event.target.value
+        [event.target.name]: isCheckbox 
+        ? event.target.checkbox 
+        : event.target.value
     });
   };
 
-  handleChangeFave = event => {
-    this.setState({
-      favoriteWord: event.target.value
-    });
-  };
-
-  handleChangeCheck = event => {
-    this.setState({
-      isChecked: event.target.checked
-    });
-  };
-
-  handleSelect = event => {
-    this.setState({
-      title: event.target.value
-    });
-  };
-
-  handleSubmit = () => {
+  handleSubmit = (event) => {
+      event.preventDefault();
       console.log(this.state);
   };
 
   render() {
     return (
-      <div>
-        <input value={this.state.name} onChange={this.handleChange} />
+      <form onSubmit={this.handleSubmit}>
+        <input 
+        name="name"
+        value={this.state.name} 
+        onChange={this.handleChange} 
+        />
         <textarea
-          value={this.state.favoriteWord}
-          onChange={this.handleChangeFave}
+        name="favoriteWord"
+        value={this.state.favoriteWord}
+        onChange={this.handleChange}
         />
         <input
-          type="checkbox"
-          checked={this.state.isChecked}
-          onChange={this.handleChangeCheck}
+        name="isChecked"
+        type="checkbox"
+        checked={this.state.isChecked}
+        onChange={this.handleChange}
         />
         <div>
-          <select value={this.state.title} onChange={this.handleSelect} >
+          <select
+          name="title"
+          value={this.state.title} 
+          onChange={this.handleChange} 
+          >
             <option>Mr.</option>
             <option>Miss.</option>
             <option>Ms.</option>
             <option>Mrs.</option>
           </select>
         </div>
-        <button onClick={this.handleSubmit}>Submit</button>
-      </div>
+        <button type="submit">Submit</button>
+      </form>
     );
   }
 }
