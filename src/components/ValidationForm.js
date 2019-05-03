@@ -5,9 +5,9 @@ export default class ValidationForm extends React.Component {
     name: "",
     email: "",
     password: "",
-    nameError: "Name is empty.",
-    emailError: "Email is incorrect.",
-    passwordError: "Invalid password."
+    nameError: "",
+    emailError: "",
+    passwordError: ""
   };
 
   handleChange = event => {
@@ -21,7 +21,28 @@ export default class ValidationForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
+    const isValid = this.validate();
+    if (isValid) {
+      console.log(this.state);
+    }
+  };
+
+  validate = () => {
+    // let nameError = "";
+    let emailError = "";
+    // let passwordError = "";
+
+    if (!this.state.email.includes("@")) {
+      emailError = "Invalid Email Address";
+    }
+
+    if (emailError) {
+      this.setState({
+        emailError
+      });
+      return false;
+    }
+    return true;
   };
 
   render() {
@@ -34,11 +55,9 @@ export default class ValidationForm extends React.Component {
             value={this.state.name}
             onChange={this.handleChange}
           />
-          {this.state.nameError ? (
-            <div style={{ fontSize: 12, color: "red" }}>
-              {this.state.nameError}
-            </div>
-          ) : null}
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.nameError}
+          </div>
         </div>
         <div>
           <input
@@ -47,7 +66,9 @@ export default class ValidationForm extends React.Component {
             value={this.state.email}
             onChange={this.handleChange}
           />
-          <div>{this.state.emailError}</div>
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.emailError}
+          </div>
         </div>
         <div>
           <input
@@ -57,7 +78,9 @@ export default class ValidationForm extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <div>{this.state.passwordError}</div>
+          <div style={{ fontSize: 12, color: "red" }}>
+            {this.state.passwordError}
+          </div>
         </div>
         <button type="submit">Submit</button>
       </form>
