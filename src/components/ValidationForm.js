@@ -1,13 +1,17 @@
 import React from "react";
 
-export default class ValidationForm extends React.Component {
-  state = {
+const initialState = {
     name: "",
     email: "",
     password: "",
     nameError: "",
     emailError: "",
     passwordError: ""
+}
+
+export default class ValidationForm extends React.Component {
+  state = {
+    initialState
   };
 
   handleChange = event => {
@@ -24,6 +28,8 @@ export default class ValidationForm extends React.Component {
     const isValid = this.validate();
     if (isValid) {
       console.log(this.state);
+      // clear form after submit
+      this.setState(initialState)
     }
   };
 
