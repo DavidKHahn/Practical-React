@@ -34,17 +34,25 @@ export default class ValidationForm extends React.Component {
   };
 
   validate = () => {
-    // let nameError = "";
+    let nameError = "";
     let emailError = "";
-    // let passwordError = "";
+    let passwordError = "";
+
+    if (!this.state.name) {
+        nameError = "Name can not be empty."
+    }
 
     if (!this.state.email.includes("@")) {
       emailError = "Invalid Email Address";
     }
 
-    if (emailError) {
+    if (!this.state.password) {
+        passwordError = "Password can not be blank";
+    }
+
+    if (emailError || nameError || passwordError) {
       this.setState({
-        emailError
+        emailError, nameError, passwordError
       });
       return false;
     }
