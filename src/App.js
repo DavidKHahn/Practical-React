@@ -4,6 +4,7 @@ import "./App.css";
 import Counter from "./components/Counter";
 import MyForm from "./components/MyForm";
 // import Header from "./components/Header";
+import ValidationForm from "./components/ValidationForm";
 
 class App extends Component {
   state = {
@@ -24,6 +25,7 @@ class App extends Component {
           toggle counter
         </button>
         <MyForm />
+        <ValidationForm />
       </div>
     );
   }
