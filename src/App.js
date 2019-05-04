@@ -9,14 +9,36 @@ import FetchRandomUser from "./components/FetchRandomUser";
 
 class App extends Component {
   state = {
+    count: 0,
     visible: true
+  };
+
+  decrementB = () => {
+    this.setState({
+      count: this.state.count - 1
+    });
+  };
+
+  incrementB = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
   };
 
   render() {
     return (
       <div className="App">
         <div className={this.state.visible ? "visible" : "hidden"}>
-          <Counter />
+          <Counter
+            count={this.state.count}
+            decrement={this.decrementB}
+            increment={this.incrementB}
+          />
+          <Counter
+            count={this.state.count}
+            decrement={this.decrementB}
+            increment={this.incrementB}
+          />
         </div>
         <button
           onClick={() => {
