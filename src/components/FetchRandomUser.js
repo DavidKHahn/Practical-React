@@ -23,17 +23,15 @@ export default class FetchRandomUser extends React.Component {
       return <div>People not found</div>;
     }
 
-    return (
-      <div>
-        {this.state.people.map((person, i) => (
-          <div key={`person-id-${i}`}>
-            <div>{person.name.title}</div>
-            <div>{person.name.first}</div>
-            <div>{person.name.last}</div>
-            <img src={person.picture.large} alt="person" />
-          </div>
-        ))}
-      </div>
-    );
+    const peopleJSX = this.state.people.map((person, i) => (
+        <div key={`person-id-${i}`}>
+          <div>{person.name.title}</div>
+          <div>{person.name.first}</div>
+          <div>{person.name.last}</div>
+          <img src={person.picture.large} alt="person" />
+        </div>
+      ))
+
+    return <div>{peopleJSX}</div>;
   }
 }
