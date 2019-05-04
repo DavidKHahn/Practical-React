@@ -25,8 +25,8 @@ export default class FetchRandomUser extends React.Component {
 
     return (
       <div>
-        {this.state.people.map(person => (
-          <div key={person.login.uuid}>
+        {this.state.people.map((person, i) => (
+          <div key={`person-id-${i}`}>
             <div>{person.name.title}</div>
             <div>{person.name.first}</div>
             <div>{person.name.last}</div>
