@@ -81,7 +81,7 @@ export default class ToDoList extends React.Component {
           <button onClick={() => this.updateTodoToShow("Active")}>Active</button>
           <button onClick={() => this.updateTodoToShow("Complete")}>Complete</button>
         </div>
-        {this.state.todos.filter(todo => todo.complete).length ? (
+        {this.state.todos.some(todo => todo.complete) ? (
             <div>
                 <button onClick={this.removeToDosThatAreComplete}>
                     Remove All Completed ToDos
