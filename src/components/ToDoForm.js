@@ -1,7 +1,7 @@
 import React from "react";
 import shortid from "shortid";
 
-export default class ToDoList extends React.Component {
+export default class ToDoForm extends React.Component {
   state = {
     text: ""
   };
@@ -12,7 +12,7 @@ export default class ToDoList extends React.Component {
     });
   };
 
-  handleChange = event => {
+  handleSubmit = event => {
     event.preventDefault();
     this.props.onSubmit({
         id: shortid.generate(), 
@@ -30,8 +30,8 @@ export default class ToDoList extends React.Component {
         <input
           name="text"
           value={this.state.text}
-          placeholder="todo..."
           onChange={this.handleChange}
+          placeholder="todo..."
         />
         <button onClick={this.handleSubmit}>Add Todo</button>
       </form>

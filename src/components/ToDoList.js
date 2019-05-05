@@ -1,6 +1,6 @@
 import React from "react";
-import TodoForm from "./components/TodoForm";
-import Todo from "./components/Todo";
+import TodoForm from "./ToDoForm";
+import Todo from "./Todo";
 
 export default class ToDoList extends React.Component {
   state = {

@@ -6,6 +6,7 @@ import MyForm from "./components/MyForm";
 // import Header from "./components/Header";
 import ValidationForm from "./components/ValidationForm";
 import FetchRandomUser from "./components/FetchRandomUser";
+import ToDoList from "./components/ToDoList";
 
 class App extends Component {
   state = {
@@ -50,6 +51,7 @@ class App extends Component {
         <MyForm />
         <ValidationForm />
         <FetchRandomUser />
+        <ToDoList />
       </div>
     );
   }
