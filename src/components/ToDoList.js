@@ -5,7 +5,8 @@ import Todo from "./components/Todo";
 export default class ToDoList extends React.Component {
   state = {
     todos: [],
-    todoToShow: "All"
+    todoToShow: "All",
+    toggleAllComplete: true
   };
 
   addTodo = todo => {
@@ -32,24 +33,23 @@ export default class ToDoList extends React.Component {
     });
   };
 
-  updateTodoToShow = (s) => {
-      this.setState({
-          todoToShow: s
-      })
-  }
-
-  handleDeleteTodo = (id) => {
+  updateTodoToShow = s => {
     this.setState({
-        todos: this.state.todos.filter(todo => todo.id !== id)
+      todoToShow: s
+    });
+  };
+
+  handleDeleteTodo = id => {
+    this.setState({
+      todos: this.state.todos.filter(todo => todo.id !== id)
     });
   };
 
   removeToDosThatAreComplete = () => {
     this.setState({
-        todos: this.state.todos.filter(todo => !todo.complete)
+      todos: this.state.todos.filter(todo => !todo.complete)
     });
   };
-
 
   render() {
     let todos = [];
@@ -59,8 +59,8 @@ export default class ToDoList extends React.Component {
     } else if (this.state.todoToShow === "Active") {
       todos = this.state.todos.filter(todo => !todo.complete);
     } else if (this.state.todoToShow === "Complete") {
-        todos = this.state.todos.filter(todo => todo.complete);
-      }
+      todos = this.state.todos.filter(todo => todo.complete);
+    }
 
     return (
       <div>
@@ -78,16 +78,36 @@ export default class ToDoList extends React.Component {
         </div>
         <div>
           <button onClick={() => this.updateTodoToShow("All")}>All</button>
-          <button onClick={() => this.updateTodoToShow("Active")}>Active</button>
-          <button onClick={() => this.updateTodoToShow("Complete")}>Complete</button>
+          <button onClick={() => this.updateTodoToShow("Active")}>
+            Active
+          </button>
+          <button onClick={() => this.updateTodoToShow("Complete")}>
+            Complete
+          </button>
         </div>
         {this.state.todos.some(todo => todo.complete) ? (
-            <div>
-                <button onClick={this.removeToDosThatAreComplete}>
-                    Remove All Completed ToDos
-                </button>
-            </div>
+          <div>
+            <button onClick={this.removeToDosThatAreComplete}>
+              Remove All Completed ToDos
+            </button>
+          </div>
         ) : null}
+        <div>
+          <button
+            onClick={() =>
+              this.setState({
+                todos: this.state.todos.map(todo => ({
+                  ...todo,
+                  complete: this.state.toggleAllComplete
+                })),
+                toggleAllComplete: !this.state.toggleAllComplete
+              })
+            }
+          >
+            Toggle All Complete: {`${this.state.toggleAllComplete}`}
+          </button>
         </div>
-    )}
+      </div>
+    );
+  }
 }
