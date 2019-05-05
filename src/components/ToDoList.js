@@ -13,24 +13,23 @@ export default class ToDoList extends React.Component {
     });
   };
 
-  toggleComplete = (id) => {
-      this.setState({
-          todos: this.state.todos.map(todo => {
-              if (todo.id === id) {
-                // suppose to update
-                return {
-                    ...todo,
-                    // id: todo.id,
-                    // text: todo.text,
-                    complete: !todo.complete
-                }
-
-              } else {
-                  return todo;
-              }
-          })
+  toggleComplete = id => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          // suppose to update
+          return {
+            ...todo,
+            // id: todo.id,
+            // text: todo.text,
+            complete: !todo.complete
+          };
+        } else {
+          return todo;
+        }
       })
-  }
+    });
+  };
 
   render() {
     return (
@@ -43,6 +42,9 @@ export default class ToDoList extends React.Component {
             todo={todo}
           />
         ))}
+        <div>
+          Todos Left: {this.state.todos.filter(todo => !todo.complete).length}
+        </div>
       </div>
     );
   }
