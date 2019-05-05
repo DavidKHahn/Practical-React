@@ -1,4 +1,5 @@
 import React from "react";
+import shortid from "shortid";
 
 export default class ToDoList extends React.Component {
   state = {
@@ -12,8 +13,12 @@ export default class ToDoList extends React.Component {
   };
 
   handleChange = event => {
-      event.preventDefault();
-      // submit form
+    event.preventDefault();
+    this.props.onSubmit({
+        id: shortid.generate(), 
+        text: this.state.text,
+        complete: false
+    });
   }
 
   render() {

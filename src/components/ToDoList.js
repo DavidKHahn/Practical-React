@@ -7,16 +7,16 @@ export default class ToDoList extends React.Component {
     };
 
     addTodo = todo => {
-        const newTodos = [todo, ...this.state.todos];
         this.setState({
-            todos: newTodos
+            todos: [todo, ...this.state.todos]
         })
     };
 
     render() {
         return (
         <div>
-            <TodoForm />
+            <TodoForm onSubmit={this.addTodo}/>
+            {JSON.stringify(this.state.todos)}
         </div>
         );
     }
