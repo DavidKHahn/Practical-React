@@ -19,7 +19,10 @@ export default class ToDoList extends React.Component {
         text: this.state.text,
         complete: false
     });
-  }
+    this.setState({
+        text: ""
+    });
+  };
 
   render() {
     return (
@@ -30,6 +33,7 @@ export default class ToDoList extends React.Component {
           placeholder="todo..."
           onChange={this.handleChange}
         />
+        <button onClick={this.handleSubmit}>Add Todo</button>
       </form>
     );
   }
