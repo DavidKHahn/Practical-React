@@ -4,7 +4,8 @@ import Todo from "./components/Todo";
 
 export default class ToDoList extends React.Component {
   state = {
-    todos: []
+    todos: [],
+    todoToShow: "All"
   };
 
   addTodo = todo => {
@@ -32,10 +33,20 @@ export default class ToDoList extends React.Component {
   };
 
   render() {
+    let todos = [];
+
+    if (this.state.todoToShow === "All") {
+      todos = this.state.todos;
+    } else if (this.state.todoToShow === "Active") {
+      todos = this.state.todos.filter(todo => !todo.complete);
+    } else if (this.state.todoToShow === "Complete") {
+        todos = this.state.todos.filter(todo => todo.complete);
+      }
+
     return (
       <div>
         <TodoForm onSubmit={this.addTodo} />
-        {this.state.todos.map(todo => (
+        {todos.map(todo => (
           <Todo
             key={todo.id}
             toggleComplete={() => this.toggleComplete(todo.id)}
@@ -44,6 +55,11 @@ export default class ToDoList extends React.Component {
         ))}
         <div>
           Todos Left: {this.state.todos.filter(todo => !todo.complete).length}
+        </div>
+        <div>
+          <button>All</button>
+          <button>Active</button>
+          <button>Complete</button>
         </div>
       </div>
     );
