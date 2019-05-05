@@ -32,6 +32,12 @@ export default class ToDoList extends React.Component {
     });
   };
 
+  updateTodoToShow = (s) => {
+      this.setState({
+          todoToShow: s
+      })
+  }
+
   render() {
     let todos = [];
 
@@ -57,9 +63,9 @@ export default class ToDoList extends React.Component {
           Todos Left: {this.state.todos.filter(todo => !todo.complete).length}
         </div>
         <div>
-          <button>All</button>
-          <button>Active</button>
-          <button>Complete</button>
+          <button onClick={() => this.updateTodoToShow("All")}>All</button>
+          <button onClick={() => this.updateTodoToShow("Active")}>Active</button>
+          <button onClick={() => this.updateTodoToShow("Complete")}>Complete</button>
         </div>
       </div>
     );
