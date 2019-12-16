@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import "./App.css";
 // import ImageSlider from "./components/ImageSlider";
 import Counter from "./components/Counter";
+import FetchRandomUser from "./components/FetchRandomUser";
 import MyForm from "./components/MyForm";
+import ToDoList from "./components/ToDoList";
 // import Header from "./components/Header";
 import ValidationForm from "./components/ValidationForm";
-import FetchRandomUser from "./components/FetchRandomUser";
-import ToDoList from "./components/ToDoList";
 
 class App extends Component {
   state = {
@@ -29,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         <div className={this.state.visible ? "visible" : "hidden"}>
           <Counter
             count={this.state.count}
@@ -41,17 +42,19 @@ class App extends Component {
             increment={this.incrementB}
           />
         </div>
+
         <button
           onClick={() => {
             this.setState({ visible: !this.state.visible });
-          }}
-        >
+          }}>
           toggle counter
         </button>
+
         <MyForm />
         <ValidationForm />
         <FetchRandomUser />
         <ToDoList />
+
       </div>
     );
   }
